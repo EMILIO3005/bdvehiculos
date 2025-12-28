@@ -12,7 +12,7 @@
   <div class="container">  
     <div>
       <h3>Mantenimiento de vehiculos</h3>
-      <p>Este modulo permite el listado, eliminacion, edicion</p>
+      <p>Este modulo permite el listado, eliminacion y edicion</p>
     </div>
     <hr>
     <div class="table-responsive">
@@ -23,11 +23,11 @@
             <th>Marca</th>
             <th>Gama</th>
             <th>Modelo</th>
-            <th>Fecha</th>
+            <th>Fabricacion</th>
             <th>Color</th>
             <th>Combustible</th>
             <th>Precio</th>
-            <th>Aciones</th>
+            <th>Acciones</th>
           </tr>
         </thead>
       </table>
