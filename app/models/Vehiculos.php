@@ -11,7 +11,7 @@ class Vehiculos extends Conexion{
     $this->pdo = parent::getConexion();
   }
 
-  public function listar(){
+  public function listar(): array{
     try{
 
       $sql ="
@@ -33,7 +33,7 @@ class Vehiculos extends Conexion{
       
   }
 
-  public function registrar($registro = []){
+  public function registrar($registro = []): int{
     try{
       $sql = " 
       INSERT INTO vehiculos
@@ -63,7 +63,7 @@ class Vehiculos extends Conexion{
   }
 
 
-  public function eliminar($id){
+  public function eliminar($id): int{
     try{
       $sql = "DELETE FROM vehiculos WHERE id = ?";
       $consulta = $this->pdo->prepare($sql);
@@ -77,7 +77,7 @@ class Vehiculos extends Conexion{
   }
 
 
-  public function actualizar($registro =[]){
+  public function actualizar($registro =[]): int{
     try{
       $sql = "
       UPDATE vehiculos SET
@@ -113,7 +113,7 @@ class Vehiculos extends Conexion{
     }
   }
 
-  public function buscarid($id){
+  public function buscarid($id): array{
     try{
       $sql = "SELECT * FROM vehiculos WHERE id = ?";
       $consulta = $this->pdo->prepare($sql);

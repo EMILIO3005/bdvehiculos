@@ -14,6 +14,7 @@
     <div>
       <h3>Registro de vehiculos</h3>
       <p>Completa el formulario solicitado para agregar un nuevo elemento</p>
+      <a href="./index.php">Listar</a>
     </div>
 
     <hr>
@@ -22,15 +23,16 @@
       <div class="card">
         <div class="card-header" >Vehiculos</div>
         <div class="card-body">
+
           <div class="form-floating mb-2">
-            <input type="text" class="form-control" id="placa">
+            <input type="text" class="form-control" id="placa" required>
             <label for="placa" class="form-label">Placa</label>
           </div>
 
           <div class="row g-2">
             <div class="col-md-6">
               <div class="form-floating mb-2">
-                <select name="" id="marcas" class="form-select">
+                <select name="" id="marcas" class="form-select" required>
                   <option value="">Seleccione</option>
                   <option value="Toyota">Toyota</option>
                   <option value="Hyundai">Hyundai</option>
@@ -43,7 +45,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-floating mb-2">
-                <select name="" id="gama" class="form-select">
+                <select name="" id="gama" class="form-select" required>
                   <option value="">Seleccione</option>
                   <option value="BAJA">BAJA</option>
                   <option value="MEDIA">MEDIA</option>
@@ -54,18 +56,38 @@
             </div>
           </div>
           <div class="form-floating mb-2">
-            <input type="text" class="form-control" id="modelo">
+            <input type="text" class="form-control" id="modelo" required>
             <label for="modelo" class="form-label">Modelo</label>
           </div>
 
-          <div class="row">
+          <div class="row g-2">
             <div class="col-md-6">
               <div class="form-floating mb-2">
-
+                <input type="date" class="form-control" id="fechaFabricacion" required>
+                <label for="fechaFabricacion" class="form-label">Fecha de Fabricacion</label>
               </div>
             </div>
             <div class="col-md-6">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="color" required>
+                <label for="color" class="form-label">Color</label>
+              </div>
+            </div>
+          </div>
 
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="tipo_combustible" required>
+                <label for="tipo_combustible" class="form-label">Combustible</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="precio" required>
+                <label for="precio" class="form-label">Precio</label>
+              </div>
             </div>
           </div>
         </div>
@@ -73,10 +95,47 @@
           <button class="btn btn-sm btn-primary" type="submit">Guardar</button>
           <button class="btn btn-sm btn-outline-secondary" type="reset">Cancelar</button>
         </div>
-        
+
       </div>
     </form>
     
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelector("#form-registro").addEventListener("submit", function(event){
+        event.preventDefault()
+
+        if (confirm("¿Desea registrar este vehiculo?")){
+          registrarProducto()
+        }
+      })
+      function registrarProducto(){
+        const datos = new FormData()
+
+        datos.append("operacion", "registrar")
+        datos.append("placa", document.querySelector("#placa").value)
+        datos.append("marca", document.querySelector("#marcas").value)
+        datos.append("gama", document.querySelector("#gama").value)
+        datos.append("modelo", document.querySelector("#modelo").value)
+        datos.append("fechaFabricacion", document.querySelector("#fechaFabricacion").value)
+        datos.append("color", document.querySelector("#color").value)
+        datos.append("tipo_combustible", document.querySelector("#tipo_combustible").value)
+        datos.append("precio", document.querySelector("#precio").value)
+
+        fetch(`../../app/controllers/vehiculo.controller.php`, {
+          method: 'POST',
+          body: datos
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          })
+          .catch(e =>{
+            console.error(e)
+          })
+      }
+    })
+  </script>
 </body>
 </html>
