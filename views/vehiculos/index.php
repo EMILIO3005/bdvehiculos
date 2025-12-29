@@ -68,7 +68,7 @@
                   <td>${element.precio}</td>
                   <td>
                     <a href='#' data-id='${element.id}' class='btn btn-sm btn-danger'>Eliminar</a>
-                    <a href='#' class='btn btn-sm btn-info'>Editar</a>
+                    <a href='./editar.php?id=${element.id}' class='btn btn-sm btn-info'>Editar</a>
                   </td>
                 </tr>
                 `

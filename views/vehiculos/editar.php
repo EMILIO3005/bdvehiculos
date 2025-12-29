@@ -14,6 +14,7 @@
     <div>
       <h3>Editar vehiculo</h3>
       <p>Completa el formulario solicitado para modificar un vehiculo</p>
+      <a href="./index.php">Listar</a>
     </div>
 
     <hr>
@@ -31,7 +32,7 @@
           <div class="row g-2">
             <div class="col-md-6">
               <div class="form-floating mb-2">
-                <select name="" id="marcas" class="form-select" required>
+                <select name="" id="marca" class="form-select" required>
                   <option value="">Seleccione</option>
                   <option value="Toyota">Toyota</option>
                   <option value="Hyundai">Hyundai</option>
@@ -39,7 +40,7 @@
                   <option value="Audi">Audi</option>
                   <option value="Nissan">Nissan</option>
                 </select>
-                <label for="marcas" class="form-label">Marca</label>
+                <label for="marca" class="form-label">Marca</label>
               </div>
             </div>
             <div class="col-md-6">
@@ -99,5 +100,77 @@
     </form>
     
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      let parametros = new URLSearchParams(location.search)
+      let id = parametros.get('id')
+
+      function buscarVehiculo(idbuscado){
+        const datos = new FormData()
+        datos.append("operacion", "buscarId")
+        datos.append("id", idbuscado)
+
+
+        fetch(`../../app/controllers/vehiculo.controller.php`, {
+          method: 'POST',
+          body: datos
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data){
+              document.querySelector("#placa").value = data[0].placa
+              document.querySelector("#marca").value = data[0].marca
+              document.querySelector("#gama").value = data[0].gama
+              document.querySelector("#modelo").value = data[0].modelo
+              document.querySelector("#fechaFabricacion").value = data[0].fechaFabricacion
+              document.querySelector("#color").value = data[0].color
+              document.querySelector("#tipo_combustible").value = data[0].tipo_combustible
+              document.querySelector("#precio").value = data[0].precio
+            }
+          })
+          .catch(e => {
+            console.error(e)
+          })
+      }
+      
+      
+      document.querySelector("#form-editar").addEventListener("submit", function(event){
+        event.preventDefault()
+
+        if(confirm("¿Desea actualizar los datos?")){
+          actualizarDatos()
+        }
+      })
+
+      function actualizarDatos(){
+        const datos = new FormData()
+
+        datos.append("operacion", "actualizar")
+        datos.append("placa", document.querySelector("#placa").value)
+        datos.append("marca", document.querySelector("#marca").value)
+        datos.append("gama", document.querySelector("#gama").value)
+        datos.append("modelo", document.querySelector("#modelo").value)
+        datos.append("fechaFabricacion", document.querySelector("#fechaFabricacion").value)
+        datos.append("color", document.querySelector("#color").value)
+        datos.append("tipo_combustible", document.querySelector("#tipo_combustible").value)
+        datos.append("precio", document.querySelector("#precio").value)
+        datos.append("id", id)
+        fetch(`../../app/controllers/vehiculo.controller.php`, {
+          method: 'POST',
+          body: datos
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          })
+          .catch(e =>{
+            console.error(e)
+          })
+      }
+      buscarVehiculo(id)
+    })
+  </script>
+
 </body>
 </html>

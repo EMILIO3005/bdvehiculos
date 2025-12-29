@@ -113,7 +113,7 @@ class Vehiculos extends Conexion{
     }
   }
 
-  public function buscarid($id): array{
+  public function buscarId($id): array{
     try{
       $sql = "SELECT * FROM vehiculos WHERE id = ?";
       $consulta = $this->pdo->prepare($sql);

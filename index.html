@@ -8,15 +8,50 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d6efd, #198754);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card-home {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .card-home h1 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-home hr {
+      opacity: 0.3;
+    }
+
+    .menu-buttons a {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1.05rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="text-center"> 
-      <h1>Bienvenidos a Perú Motors 🏎️</h1>
-      <hr>
-      <a class="btn btn-sm btn-success" href="./views/vehiculos/">Vehiculos</a>
-      <a class="btn btn-sm btn-success" href="#">Usuario</a>
-      <a class="btn btn-sm btn-success" href="#">Proveedores</a>
+  <div class="card card-home text-center p-4">
+     
+    <h1>Perú Motors 🏎️</h1>
+    <p class="text-muted">Sistema de gestion vehicular</p>
+    <hr>
+    <div class="menu-buttons">
+      <a class="btn btn-sm btn-success" href="./views/vehiculos/">🚗 Vehiculos</a>
+      <a class="btn btn-sm btn-primary" href="#">👤 Usuario</a>
+      <a class="btn btn-sm btn-warning text-dark" href="#">🏢 Proveedores</a>
     </div>
   </div>
 </body>

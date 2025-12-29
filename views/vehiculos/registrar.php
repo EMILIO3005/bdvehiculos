@@ -115,7 +115,7 @@
 
         datos.append("operacion", "registrar")
         datos.append("placa", document.querySelector("#placa").value)
-        datos.append("marca", document.querySelector("#marcas").value)
+        datos.append("marca", document.querySelector("#marca").value)
         datos.append("gama", document.querySelector("#gama").value)
         datos.append("modelo", document.querySelector("#modelo").value)
         datos.append("fechaFabricacion", document.querySelector("#fechaFabricacion").value)
